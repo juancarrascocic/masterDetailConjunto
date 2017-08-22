@@ -1,4 +1,4 @@
-		
+var baseURL = "http://localhost:62270/api/"
 $(document).ready(function(){
 
 	var MasterDetail = new Vue({
@@ -18,7 +18,7 @@ $(document).ready(function(){
 				age:""
 			},
 			read: true,
-			menuChoice: "Personas"
+			menuChoice: "Usuarios"
 		}, 
 		computed:{
 			disabledOnNoChange: function(){
@@ -47,7 +47,7 @@ $(document).ready(function(){
 				this.makeGetListRequest();
 			},
 			makeGetListRequest: function(){
-				$.ajax(url="http://localhost:57470/api/" + this.menuChoice,
+				$.ajax(url=baseURL + this.menuChoice,
 					method="GET")
 				.done(this.submitGetListValues)
 			},
@@ -55,7 +55,7 @@ $(document).ready(function(){
 				this.lista = datos;
 			},
 			makeGetRequest: function(id){
-				$.ajax(url="http://localhost:57470/api/" + this.menuChoice + "/" + id,
+				$.ajax(url=baseURL + this.menuChoice + "/" + id,
 					method="GET")
 				.done(this.submitDetailValues)
 			},
@@ -75,7 +75,7 @@ $(document).ready(function(){
 				}
 			},
 			makePutRequest: function(item){
-				$.ajax({url:"http://localhost:57470/api/ " + this.menuChoice +"/" + item.index,
+				$.ajax({url:baseURL + this.menuChoice +"/" + item.index,
 					method:"PUT",
 					data: 	{Id: item.index,
 						Nombre: item.name,
@@ -87,7 +87,7 @@ $(document).ready(function(){
 				})
 			},
 			makePostRequest: function(item){
-				$.ajax({url:"http://localhost:57470/api/" + this.menuChoice,
+				$.ajax({url:baseURL + this.menuChoice,
 					method:"POST",
 					data: 	{Nombre: item.name,
 						Apellido: item.surname,
@@ -133,7 +133,7 @@ $(document).ready(function(){
 				this.currentPerson.age = "";
 			},
 			deleteItem: function(index){
-				$.ajax({url:"http://localhost:57470/api/ " + this.menuChoice +"/" + index,
+				$.ajax({url: baseURL + this.menuChoice +"/" + index,
 					method:"DELETE"})	
 				.done(this.makeGetListRequest)
 				.fail(function(){
