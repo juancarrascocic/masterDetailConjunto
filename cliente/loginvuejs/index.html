@@ -10,9 +10,9 @@
 
 	<div id="Master-Detail">
 	<div id = "Menu" >
-			<a class ="anchorMenu" v-on:click="chooseMenu('Usuarios')">Usuarios</a>
-			<a class ="anchorMenu" v-on:click="chooseMenu('CuentaBancarias')">Cuentas Bancarias</a>
-			<a class ="anchorMenu" v-on:click="chooseMenu('Domicilios')">Domicilios</a>
+			<a :class ="anchorClass('Usuarios')" v-on:click="chooseMenu('Usuarios')">Usuarios</a>
+			<a :class ="anchorClass('CuentaBancarias')" v-on:click="chooseMenu('CuentaBancarias')">Cuentas Bancarias</a>
+			<a :class ="anchorClass('Domicilios')" v-on:click="chooseMenu('Domicilios')">Domicilios</a>
 
 		</div>
 		<div id="Master" class="master-div">

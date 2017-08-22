@@ -41,7 +41,18 @@ img.buttonImage {
 	width:30px	;
 
 }
-
 a.anchorMenu{
 	display:inline-block;
+	padding: 10px;
+	margin: 0px;
+}
+a.anchorSelected{
+	border-top: solid;
+	border-right: solid;
+	border-left: solid;
+	background-color: 
+}
+a.anchorNotSelected{
+	border: solid;
+
 }

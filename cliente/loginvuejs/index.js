@@ -5,17 +5,17 @@ $(document).ready(function(){
 		el: '#Master-Detail',
 		data:{
 			lista:[],
-			currentPerson:{
+			currentObject:{
 				index:"",
-				name:"",
-				surname:"",
-				age:""
+				property1:"",
+				property2:"",
+				property3:""
 			},
-			previousPerson:{
+			previousObject:{
 				index:"",
-				name:"",
-				surname:"",
-				age:""
+				property1:"",
+				property2:"",
+				property3:""
 			},
 			read: true,
 			menuChoice: "Usuarios"
@@ -26,13 +26,13 @@ $(document).ready(function(){
 				if(this.read){
 					retorno = true;
 				}
-				else if(this.currentPerson.name != "" || this.currentPerson.name.localeCompare(this.previousPerson.name) == 0){
+				else if(this.currentObject.property1 != "" || this.currentObject.property1.localeCompare(this.previousObject.property1) == 0){
 					retorno = true;
 				}
-				else if(this.currentPerson.surname != "" || this.currentPerson.surname.localeCompare(this.previousPerson.surname) == 0){
+				else if(this.currentObject.property2 != "" || this.currentObject.property2.localeCompare(this.previousObject.property2) == 0){
 					retorno = true;
 				}
-				else if(this.currentPerson.age != "" || this.currentPerson.age.localeCompare(this.previousPerson.age) == 0){
+				else if(this.currentObject.property3 != "" || this.currentObject.property3.localeCompare(this.previousObject.property3) == 0){
 					retorno = true;
 				}
 				return retorno;
@@ -59,18 +59,43 @@ $(document).ready(function(){
 					method="GET")
 				.done(this.submitDetailValues)
 			},
-			submitDetailValues: function(datos){
-				this.currentPerson.index = datos.Id;
-				this.currentPerson.name = datos.Nombre;
-				this.currentPerson.surname = datos.Apellido;
-				this.currentPerson.age = datos.Edad;
-			},
-			buttonAccept: function(){
-				if(this.currentPerson.index==""){
-					this.makePostRequest(this.currentPerson);
+			anchorClass: function(anchor){
+				let classproperty1 = "anchorMenu ";
+
+				if(anchor == this.menuChoice){
+					classproperty1 = classproperty1+ "anchorSelected";
 				}
 				else{
-					this.makePutRequest(this.currentPerson);
+					classproperty1 = classproperty1 +	"anchorNotSelected";
+				}
+				return classproperty1;
+			},
+			submitDetailValues: function(datos){
+				if(menuChoice == 'Usuarios'){
+				this.currentObject.index = datos.Id;
+				this.currentObject.property1 = datos.Nombre;
+				this.currentObject.property2 = datos.Apellido;
+				this.currentObject.property3 = datos.Edad;
+			}
+			else if(menuChoice == 'CuentaBancarias'){
+				this.currentObject.index = datos.Id;
+				this.currentObject.property1 = datos.Credito;
+				this.currentObject.property2 = datos.Numero;
+				this.currentObject.property3 = datos.Saldo;
+			}
+			else if(menuChoice == 'Domicilios'){
+				this.currentObject.index = datos.Id;
+				this.currentObject.property1 = datos.Calle;
+				this.currentObject.property2 = datos.Numero;
+				this.currentObject.property3 = datos.Ciudad;
+			}
+			},
+			buttonAccept: function(){
+				if(this.currentObject.index==""){
+					this.makePostRequest(this.currentObject);
+				}
+				else{
+					this.makePutRequest(this.currentObject);
 
 				}
 			},
@@ -78,9 +103,9 @@ $(document).ready(function(){
 				$.ajax({url:baseURL + this.menuChoice +"/" + item.index,
 					method:"PUT",
 					data: 	{Id: item.index,
-						Nombre: item.name,
-						Apellido: item.surname,
-						Edad: item.age}})	
+						Nombre: item.property1,
+						Apellido: item.property2,
+						Edad: item.property3}})	
 				.done(this.makeGetListRequest)
 				.fail(function(){
 					alert("ELEMENTO NO ACTUALIZADO");
@@ -89,9 +114,9 @@ $(document).ready(function(){
 			makePostRequest: function(item){
 				$.ajax({url:baseURL + this.menuChoice,
 					method:"POST",
-					data: 	{Nombre: item.name,
-						Apellido: item.surname,
-						Edad: item.age}})	
+					data: 	{Nombre: item.property1,
+						Apellido: item.property2,
+						Edad: item.property3}})	
 				.done(this.afterPostHandler)
 				.fail(function(){
 					alert("ELEMENTO NO CREADO");
@@ -99,15 +124,15 @@ $(document).ready(function(){
 			},
 			afterPostHandler: function(datos){
 				this.makeGetListRequest();
-				this.currentPerson.index = datos.Id;
-				this.previousPerson.index = this.currentPerson.index;
-				this.previousPerson.name = this.currentPerson.name;
-				this.previousPerson.surname = this.currentPerson.surname;
-				this.previousPerson.age = this.currentPerson.age;
+				this.currentObject.index = datos.Id;
+				this.previousObject.index = this.currentObject.index;
+				this.previousObject.property1 = this.currentObject.property1;
+				this.previousObject.property2 = this.currentObject.property2;
+				this.previousObject.property3 = this.currentObject.property3;
 			},
 			computedClass: function (index) {
 				classArray = "master-div-row ";
-				if (this.currentPerson.index != "" && index == this.currentPerson.index) {
+				if (this.currentObject.index != "" && index == this.currentObject.index) {
 					classArray = classArray + "selected";
 				}            
 
@@ -119,18 +144,18 @@ $(document).ready(function(){
 			},
 			updateDetail: function(index){
 				this.makeGetRequest(index);
-				this.previousPerson.index = this.currentPerson.index;
-				this.previousPerson.name = this.currentPerson.name;
-				this.previousPerson.surname = this.currentPerson.surname;
-				this.previousPerson.age = this.currentPerson.age;
+				this.previousObject.index = this.currentObject.index;
+				this.previousObject.property1 = this.currentObject.property1;
+				this.previousObject.property2 = this.currentObject.property2;
+				this.previousObject.property3 = this.currentObject.property3;
 				this.read = false;
 			},
 			newDetail: function(index){
 				this.read= false;
-				this.currentPerson.index = "";
-				this.currentPerson.name = "";
-				this.currentPerson.surname = "";
-				this.currentPerson.age = "";
+				this.currentObject.index = "";
+				this.currentObject.property1 = "";
+				this.currentObject.property2 = "";
+				this.currentObject.property3 = "";
 			},
 			deleteItem: function(index){
 				$.ajax({url: baseURL + this.menuChoice +"/" + index,
@@ -141,13 +166,13 @@ $(document).ready(function(){
 				})
 			},
 			buttonClean: function(){
-				this.currentPerson.index = "";
-				this.currentPerson.name = "";
-				this.currentPerson.surname = "";
-				this.currentPerson.age = "";
+				this.currentObject.index = "";
+				this.currentObject.property1 = "";
+				this.currentObject.property2 = "";
+				this.currentObject.property3 = "";
 			},
 			buttonReset: function(){
-				this.currentPerson = this.previousPerson;
+				this.currentObject = this.previousObject;
 			},
 
 
