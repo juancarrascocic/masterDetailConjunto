@@ -32,21 +32,57 @@
 		</div>
 		<div class="detail-div" id="Detail">
 			<h1>DETAIL</h1>
-			<div id ="Formulario"  class="Formulario">
-				<label>Nombre:</label>
-				<input :disabled="read" v-model="currentPerson.name" type="text" id="nombreInput" placeholder="Nombre"></input>
-			</br>
-			<label>Apellido:</label>
-			<input :disabled="read" type="text" v-model="currentPerson.surname" id="apellidoInput" placeholder="Apellido"></input>
-		</br>
-		<label>Edad:</label>
-		<input :disabled="read" type="number" v-model="currentPerson.age" id="edadInput" placeholder="Edad"></input>
-		<div class = "buttonContainer">
-			<button v-bind:disabled="disabledOnNoChange"  id="acceptButton" v-on:click="buttonAccept">ACEPTAR</button>
-			<button :disabled="read"  id="limpiarButton" v-on:click="buttonClean">LIMPIAR</button>
-			<button v-bind:disabled="disabledOnNoChange"  id="resetButton" v-on:click="buttonReset">RESET</button>
+			<template v-if="menuChoice==='Usuarios'">
+				<div id ="FormularioUsuarios"  class="Formulario">
+					<label>Nombre:</label>
+					<input :disabled="read" v-model="currentPerson.name" type="text" id="nombreInput" placeholder="Nombre"></input>
+				</br>
+				<label>Apellido:</label>
+				<input :disabled="read" type="text" v-model="currentPerson.surname" id="apellidoInput" placeholder="Apellido"></input>
+				</br>
+				<label>Edad:</label>
+				<input :disabled="read" type="number" v-model="currentPerson.age" id="edadInput" placeholder="Edad"></input>
+				<div class = "buttonContainer">
+					<button v-bind:disabled="disabledOnNoChange"  id="acceptButton" v-on:click="buttonAccept">ACEPTAR</button>
+					<button :disabled="read"  id="limpiarButton" v-on:click="buttonClean">LIMPIAR</button>
+					<button v-bind:disabled="disabledOnNoChange"  id="resetButton" v-on:click="buttonReset">RESET</button>
+				</div>
+			</template>
+
+			<template v-if="menuChoice==='CuentaBancarias'">
+				<div id ="FormularioCuentas"  class="Formulario">
+					<label>Credito:</label>
+					<input :disabled="read" v-model="currentPerson.name" type="checkbox" id="nombreInput" placeholder="Credito"></input>
+				</br>
+				<label>Numero:</label>
+				<input :disabled="read" type="number" v-model="currentPerson.surname" id="apellidoInput" placeholder="Numero"></input>
+				</br>
+				<label>Saldo:</label>
+				<input :disabled="read" type="number" v-model="currentPerson.age" id="edadInput" placeholder="Saldo"></input>
+				<div class = "buttonContainer">
+					<button v-bind:disabled="disabledOnNoChange"  id="acceptButton" v-on:click="buttonAccept">ACEPTAR</button>
+					<button :disabled="read"  id="limpiarButton" v-on:click="buttonClean">LIMPIAR</button>
+					<button v-bind:disabled="disabledOnNoChange"  id="resetButton" v-on:click="buttonReset">RESET</button>
+				</div>
+			</template>
+
+			<template v-if="menuChoice==='Domicilios'">
+				<div id ="FormularioDomicilios"  class="Formulario">
+					<label>Calle:</label>
+					<input :disabled="read" v-model="currentPerson.name" type="text" id="nombreInput" placeholder="Calle"></input>
+				</br>
+				<label>Numero:</label>
+				<input :disabled="read" type="number" v-model="currentPerson.surname" id="apellidoInput" placeholder="Numero"></input>
+				</br>
+				<label>Ciudad:</label>
+				<input :disabled="read" type="text" v-model="currentPerson.age" id="edadInput" placeholder="Ciudad"></input>
+				<div class = "buttonContainer">
+					<button v-bind:disabled="disabledOnNoChange"  id="acceptButton" v-on:click="buttonAccept">ACEPTAR</button>
+					<button :disabled="read"  id="limpiarButton" v-on:click="buttonClean">LIMPIAR</button>
+					<button v-bind:disabled="disabledOnNoChange"  id="resetButton" v-on:click="buttonReset">RESET</button>
+				</div>
+			</template>
 		</div>
-	</div>
 </div>
 </div>
 <script src ="index.js"></script>
