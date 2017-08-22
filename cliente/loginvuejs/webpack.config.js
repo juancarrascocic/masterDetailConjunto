@@ -2,7 +2,8 @@ module.exports = {
   // other options...
     entry:{
       master: './components/master.vue',
-      root: './components/rootComponent.vue'
+      root: './components/root.vue',
+      detail: './components/detail.vue'
     }, 
 output: {
     filename: '[name]Component.js',
@@ -20,7 +21,7 @@ output: {
           // The following config will cause all <script> tags without "lang"
           // attribute to be loaded with coffee-loader
           loaders: {
-            js: 'babel'
+            js: 'babel-loader'
           },
         }
       }

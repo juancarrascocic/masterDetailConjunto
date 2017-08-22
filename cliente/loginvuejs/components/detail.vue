@@ -20,39 +20,42 @@
 
 <script>
 export default {
-  // all code for my component goes here
- 	 makeGetRequest: function(id){
-				$.ajax(url="http://localhost:57470/api/" + this.menuChoice + "/" + id,
-					method="GET")
-				.done(this.submitDetailValues)
-	},
-	readDetail: function(index){
-	this.makeGetRequest(index);
-	this.read = true;
-	},
-	updateDetail: function(index){
+
+	methods:{
+	  // all code for my component goes here
+	 	 makeGetRequest: function(id){
+					$.ajax(url="http://localhost:57470/api/" + this.menuChoice + "/" + id,
+						method="GET")
+					.done(this.submitDetailValues)
+		},
+		readDetail: function(index){
 		this.makeGetRequest(index);
-		this.previousPerson.index = this.currentPerson.index;
-		this.previousPerson.name = this.currentPerson.name;
-		this.previousPerson.surname = this.currentPerson.surname;
-		this.previousPerson.age = this.currentPerson.age;
-		this.read = false;
-	},
-	newDetail: function(index){
-		this.read= false;
-		this.currentPerson.index = "";
-		this.currentPerson.name = "";
-		this.currentPerson.surname = "";
-		this.currentPerson.age = "";
-	},
-	deleteItem: function(index){
-		$.ajax({url:"http://localhost:57470/api/ " + this.menuChoice +"/" + index,
-			method:"DELETE"})	
-		.done(this.makeGetListRequest)
-		.fail(function(){
-			alert("ELEMENTO NO BORRADO");
-		})
-	},
+		this.read = true;
+		},
+		updateDetail: function(index){
+			this.makeGetRequest(index);
+			this.previousPerson.index = this.currentPerson.index;
+			this.previousPerson.name = this.currentPerson.name;
+			this.previousPerson.surname = this.currentPerson.surname;
+			this.previousPerson.age = this.currentPerson.age;
+			this.read = false;
+		},
+		newDetail: function(index){
+			this.read= false;
+			this.currentPerson.index = "";
+			this.currentPerson.name = "";
+			this.currentPerson.surname = "";
+			this.currentPerson.age = "";
+		},
+		deleteItem: function(index){
+			$.ajax({url:"http://localhost:57470/api/ " + this.menuChoice +"/" + index,
+				method:"DELETE"})	
+			.done(this.makeGetListRequest)
+			.fail(function(){
+				alert("ELEMENTO NO BORRADO");
+			})
+		},
+	}
 }
 </script>
 
