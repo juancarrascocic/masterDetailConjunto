@@ -32,7 +32,7 @@
 		</div>
 		<div class="detail-div" id="Detail">
 			<h1>DETAIL</h1>
-			<template v-if="menuChoice==='Usuarios'">
+			<div v-if="menuChoice==='Usuarios'">
 				<div id ="FormularioUsuarios"  class="Formulario">
 					<label>Nombre:</label>
 					<input :disabled="read" v-model="currentObject.property1" type="text" id="nombreInput" placeholder="Nombre"></input>
@@ -47,9 +47,9 @@
 					<button  id="limpiarButton" v-on:click="buttonClean">LIMPIAR</button>
 					<button  id="resetButton" v-on:click="buttonReset">RESET</button>
 				</div>
-			</template>
+			</div>
 
-			<template v-if="menuChoice==='CuentaBancarias'">
+			<div v-if="menuChoice==='CuentaBancarias'">
 				<div id ="FormularioCuentas"  class="Formulario">
 					<label>Credito:</label>
 					<input :disabled="read" v-model="currentObject.property1" type="checkbox" id="nombreInput" placeholder="Credito"></input>
@@ -64,9 +64,9 @@
 					<button id="limpiarButton" v-on:click="buttonClean">LIMPIAR</button>
 					<button  id="resetButton" v-on:click="buttonReset">RESET</button>
 				</div>
-			</template>
+			</div>
 
-			<template v-if="menuChoice==='Domicilios'">
+			<div v-if="menuChoice==='Domicilios'">
 				<div id ="FormularioDomicilios"  class="Formulario">
 					<label>Calle:</label>
 					<input :disabled="read" v-model="currentObject.property1" type="text" id="nombreInput" placeholder="Calle"></input>
@@ -81,7 +81,7 @@
 					<button  id="limpiarButton" v-on:click="buttonClean">LIMPIAR</button>
 					<button id="resetButton" v-on:click="buttonReset">RESET</button>
 				</div>
-			</template>
+			</div>
 		</div>
 </div>
 </div>
