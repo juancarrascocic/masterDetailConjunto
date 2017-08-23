@@ -45,6 +45,12 @@ $(document).ready(function(){
 				this.menuChoice = menu;
 				this.read = this.read; // Esto es para que se recargue menuChoice. No se por que
 				this.makeGetListRequest();
+				this.read = true;
+				this.currentObject.index = "";
+				this.currentObject.property1 = "";
+				this.currentObject.property2 = "";
+				this.currentObject.property3 = "";
+
 			},
 			makeGetListRequest: function(){
 				$.ajax(url=baseURL + this.menuChoice,
@@ -71,19 +77,19 @@ $(document).ready(function(){
 				return classproperty1;
 			},
 			submitDetailValues: function(datos){
-				if(menuChoice == 'Usuarios'){
+				if(this.menuChoice == 'Usuarios'){
 				this.currentObject.index = datos.Id;
 				this.currentObject.property1 = datos.Nombre;
 				this.currentObject.property2 = datos.Apellido;
 				this.currentObject.property3 = datos.Edad;
 			}
-			else if(menuChoice == 'CuentaBancarias'){
+			else if(this.menuChoice == 'CuentaBancarias'){
 				this.currentObject.index = datos.Id;
 				this.currentObject.property1 = datos.Credito;
 				this.currentObject.property2 = datos.Numero;
 				this.currentObject.property3 = datos.Saldo;
 			}
-			else if(menuChoice == 'Domicilios'){
+			else if(this.menuChoice == 'Domicilios'){
 				this.currentObject.index = datos.Id;
 				this.currentObject.property1 = datos.Calle;
 				this.currentObject.property2 = datos.Numero;
@@ -112,11 +118,31 @@ $(document).ready(function(){
 				})
 			},
 			makePostRequest: function(item){
+				var datos;
+				if(this.menuChoice == 'Usuarios'){
+					datos = {
+				Nombre: this.currentObject.property1,
+				Apellido: this.currentObject.property2,
+				Edad: this.currentObject.property3
+			};
+			}
+			else if(this.menuChoice == 'CuentaBancarias'){
+				datos = {
+				Credito: this.currentObject.property1,
+				Numero: this.currentObject.property2,
+				Saldo: this.currentObject.property3
+			};
+			}
+			else if(this.menuChoice == 'Domicilios'){
+				datos = {
+				Calle: this.currentObject.property1,
+				Numero: this.currentObject.property2,
+				Ciudad: this.currentObject.property3
+			};
+			}
 				$.ajax({url:baseURL + this.menuChoice,
 					method:"POST",
-					data: 	{Nombre: item.property1,
-						Apellido: item.property2,
-						Edad: item.property3}})	
+					data: datos})	
 				.done(this.afterPostHandler)
 				.fail(function(){
 					alert("ELEMENTO NO CREADO");
