@@ -4,16 +4,15 @@
 			<div id ="FormularioUsuarios"  class="Formulario">
 				<label>Nombre:</label>
 				<input :disabled="read" v-model="currentObject.property1" type="text" id="nombreInput" placeholder="Nombre"></input>
-			</br>
-			<label>Apellido:</label>
-			<input :disabled="read" type="text" v-model="currentObject.property2" id="apellidoInput" placeholder="Apellido"></input>
-			</br>
-			<label>Edad:</label>
-			<input :disabled="read" type="number" v-model="currentObject.property3" id="edadInput" placeholder="Edad"></input>
-			<div class = "buttonContainer">
-				<button  id="acceptButton" v-on:click="buttonAccept">ACEPTAR</button>
-				<button  id="limpiarButton" v-on:click="buttonClean">LIMPIAR</button>
-				<button  id="resetButton" v-on:click="buttonReset">RESET</button>
+				<label>Apellido:</label>
+				<input :disabled="read" type="text" v-model="currentObject.property2" id="apellidoInput" placeholder="Apellido"></input>
+				<label>Edad:</label>
+				<input :disabled="read" type="number" v-model="currentObject.property3" id="edadInput" placeholder="Edad"></input>
+				<div class = "buttonContainer">
+					<button  id="acceptButton" v-on:click="buttonAccept">ACEPTAR</button>
+					<button  id="limpiarButton" v-on:click="buttonClean">LIMPIAR</button>
+					<button  id="resetButton" v-on:click="buttonReset">RESET</button>
+				</div>
 			</div>
 		</div>
 
@@ -21,16 +20,16 @@
 			<div id ="FormularioCuentas"  class="Formulario">
 				<label>Credito:</label>
 				<input :disabled="read" v-model="currentObject.property1" type="checkbox" id="nombreInput" placeholder="Credito"></input>
-			</br>
-			<label>Numero:</label>
-			<input :disabled="read" type="number" v-model="currentObject.property2" id="apellidoInput" placeholder="Numero"></input>
-			</br>
-			<label>Saldo:</label>
-			<input :disabled="read" type="number" v-model="currentObject.property3" id="edadInput" placeholder="Saldo"></input>
-			<div class = "buttonContainer">
-				<button  id="acceptButton" v-on:click="buttonAccept">ACEPTAR</button>
-				<button id="limpiarButton" v-on:click="buttonClean">LIMPIAR</button>
-				<button  id="resetButton" v-on:click="buttonReset">RESET</button>
+				<label>Numero:</label>
+				<input :disabled="read" type="number" v-model="currentObject.property2" id="apellidoInput" placeholder="Numero"></input>
+				</br>
+				<label>Saldo:</label>
+				<input :disabled="read" type="number" v-model="currentObject.property3" id="edadInput" placeholder="Saldo"></input>
+				<div class = "buttonContainer">
+					<button  id="acceptButton" v-on:click="buttonAccept">ACEPTAR</button>
+					<button id="limpiarButton" v-on:click="buttonClean">LIMPIAR</button>
+					<button  id="resetButton" v-on:click="buttonReset">RESET</button>
+				</div>
 			</div>
 		</div>
 
@@ -38,16 +37,16 @@
 			<div id ="FormularioDomicilios"  class="Formulario">
 				<label>Calle:</label>
 				<input :disabled="read" v-model="currentObject.property1" type="text" id="nombreInput" placeholder="Calle"></input>
-			</br>
-			<label>Numero:</label>
-			<input :disabled="read" type="number" v-model="currentObject.property2" id="apellidoInput" placeholder="Numero"></input>
-			</br>
-			<label>Ciudad:</label>
-			<input :disabled="read" type="text" v-model="currentObject.property3" id="edadInput" placeholder="Ciudad"></input>
-			<div class = "buttonContainer">
-				<button id="acceptButton" v-on:click="buttonAccept">ACEPTAR</button>
-				<button  id="limpiarButton" v-on:click="buttonClean">LIMPIAR</button>
-				<button id="resetButton" v-on:click="buttonReset">RESET</button>
+				<label>Numero:</label>
+				<input :disabled="read" type="number" v-model="currentObject.property2" id="apellidoInput" placeholder="Numero"></input>
+				</br>
+				<label>Ciudad:</label>
+				<input :disabled="read" type="text" v-model="currentObject.property3" id="edadInput" placeholder="Ciudad"></input>
+				<div class = "buttonContainer">
+					<button id="acceptButton" v-on:click="buttonAccept">ACEPTAR</button>
+					<button  id="limpiarButton" v-on:click="buttonClean">LIMPIAR</button>
+					<button id="resetButton" v-on:click="buttonReset">RESET</button>
+				</div>
 			</div>
 		</div>
 	</div>
